@@ -1,10 +1,18 @@
 package fr.iutvalence.sajidepeyronnet.sokoban;
 
+/**
+ * TODO.
+ *
+ * @author TODO
+ * @version TODO
+ */
 public class Sokoban {
-
-	public void main() {
-		// TODO - implement fr.iutvalence.sajidepeyronnet.sokoban.Sokoban.main
-		throw new UnsupportedOperationException();
-	}
-
+    /**
+     * TODO.
+     *
+     * @param args TODO
+     */
+    public static void main(final String... args) {
+        /* TODO */
+    }
 }
