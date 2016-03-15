@@ -1,0 +1,26 @@
+package fr.iutvalence.sajidepeyronnet.sokoban;
+
+public class Checkerboard {
+
+	private int width;
+	private int height;
+	private box[] box;
+	private int DIMENSION_WIDTH = 10 : int;
+	private int DIMENSION_HEIGHT = 10 : int;
+
+	public void createCheckerboard() {
+		// TODO - implement fr.iutvalence.sajidepeyronnet.sokoban.Checkerboard.createCheckerboard
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param width
+	 * @param height
+	 */
+	public void createCheckboard(int width, int height) {
+		// TODO - implement fr.iutvalence.sajidepeyronnet.sokoban.Checkerboard.createCheckboard
+		throw new UnsupportedOperationException();
+	}
+
+}
