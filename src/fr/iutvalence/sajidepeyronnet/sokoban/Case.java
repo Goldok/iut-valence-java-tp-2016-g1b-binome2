@@ -8,7 +8,7 @@ package fr.iutvalence.sajidepeyronnet.sokoban;
  */
 public class Case {
     /** TODO. */
-    private String skin;
+    private char skin;
 
     /**
      * TODO.

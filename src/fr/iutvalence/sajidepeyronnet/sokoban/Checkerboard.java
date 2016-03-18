@@ -7,31 +7,53 @@ package fr.iutvalence.sajidepeyronnet.sokoban;
  * @version TODO
  */
 public class Checkerboard {
-    /** TODO. */
-    private int   width;
-    /** TODO. */
-    private int   height;
-    /** TODO. */
-    private Case[][] box;
-    /** TODO. */
-    private int DIMENSION_WIDTH = 10;
-    /** TODO. */
-    private int DIMENSION_HEIGHT = 10;
+	/** Default Checkerboard width. */
+	private static final int DEFAULT_DIMENSION_WIDTH = 10;
+	/** Default Checkerboard Height.  */
+	private static final int DEFAULT_DIMENSION_HEIGHT = 10;
 
-    /** TODO. */
-    public void createCheckerboard() {
-        // TODO - implement fr.iutvalence.sajidepeyronnet.sokoban.Checkerboard.createCheckerboard
-        throw new UnsupportedOperationException();
-    }
+	/**  Checkerboard's Width */
+	private final int width;
+	/** Checkerboard's Height */
+	private final int height;
+	/** Checkers. */
+	private final Case[][] box;
 
-    /**
-     * TODO.
-     *
-     * @param width TODO
-     * @param height TODO
-     */
-    public void createCheckboard(int width, int height) {
-        // TODO - implement fr.iutvalence.sajidepeyronnet.sokoban.Checkerboard.createCheckboard
-        throw new UnsupportedOperationException();
-    }
+	private Position playerInitialPosition;
+	private Position[] boxesInitialPositions;
+	
+	public Checkerboard() {
+		this.width = DEFAULT_DIMENSION_WIDTH;
+		this.height = DEFAULT_DIMENSION_HEIGHT;
+		box = new Case[width][height];
+		
+		prepareBoard();
+	}
+
+	public Checkerboard(int width, int height) {
+		this.width =  width;
+		this.height = height;
+		box = new Case[width][height];
+
+		prepareBoard();
+	}
+
+
+	private void prepareBoard() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Position getPlayerInitialPosition() {
+		return playerInitialPosition;
+	}
+
+	public Position[] getBoxesInitialPositions() {
+		// TODO Auto-generated method stub
+		return boxesInitialPositions;
+	}
+
+
+
+
 }

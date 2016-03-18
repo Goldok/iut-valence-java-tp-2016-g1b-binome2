@@ -10,27 +10,25 @@ public class Game {
     /** TODO. */
     private Checkerboard checkerboard;
     /** TODO. */
-    private Case         player;
+    private Position player;
     /** TODO. */
-    private Case[]       box;
+    private Position[] box;
     /** TODO. */
-    private int round = 0;
+    private int round;
     /** TODO. */
     private String playerName;
 
-    /**
-     * TODO.
-     *
-     * @return TODO
-     */
-    public String playerName() {
-        // TODO - implement fr.iutvalence.sajidepeyronnet.sokoban.Game.playerName
-        throw new UnsupportedOperationException();
+    public Game(String playerName) {
+    	checkerboard = new Checkerboard();
+    	
+    	player = checkerboard.getPlayerInitialPosition();
+    	box  = checkerboard.getBoxesInitialPositions();
+    	round = 0;
+    	this.playerName = playerName; 
     }
-
-    /** TODO. */
-    public void getRound() {
-        // TODO - implement fr.iutvalence.sajidepeyronnet.sokoban.Game.getRound
-        throw new UnsupportedOperationException();
-    }
+    
+	public void start() {
+		// TODO Auto-generated method stub
+		
+	}
 }
