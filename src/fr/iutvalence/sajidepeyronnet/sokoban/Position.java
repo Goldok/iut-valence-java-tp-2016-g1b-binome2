@@ -8,10 +8,20 @@ package fr.iutvalence.sajidepeyronnet.sokoban;
  */
 public class Position {
     /** TODO. */
-    private int x;
+    protected int x;
     /** TODO. */
-    private int y;
+    protected int y;
 
+    
+    
+    public Position(int x0, int y0)
+    {
+    	this.x=x0;
+    	this.y=y0;
+    	
+    }
+    
+    
     // TODO getter without return type?
     /** TODO. */
     public void getX() {

@@ -7,7 +7,15 @@ package fr.iutvalence.sajidepeyronnet.sokoban;
  * @version TODO
  */
 public class Case {
-    /** TODO. */
+    public static final char WALL = '#';
+    public static final char PLAYER = '1';
+    public static final char FLOOR = ' ';
+    public static final char BOX = '¤';
+    public static final char FINISH = '°';
+    
+    
+    
+	/** TODO. */
     private char skin;
 
     /**
@@ -16,8 +24,12 @@ public class Case {
      * @param string   TODO
      * @param Position TODO
      */
-    public void box(int string, int Position) {
-        // TODO - implement fr.iutvalence.sajidepeyronnet.sokoban.Case.box
-        throw new UnsupportedOperationException();
+    public Case(char skin) {
+    	this.skin = skin;
+    }
+    
+    @Override
+    public String toString() {
+    	return String.valueOf(skin);
     }
 }
