@@ -14,7 +14,7 @@ public class Position {
 
     
     
-    public Position(int x0, int y0)
+    public Position(int y0, int x0)
     {
     	this.x=x0;
     	this.y=y0;
@@ -22,17 +22,21 @@ public class Position {
     }
     
     
+ /*   public Position getNewPositionZ();
+    {
+    	this.x=x++;
+    }
+  */  
     // TODO getter without return type?
     /** TODO. */
-    public void getX() {
-        // TODO - implement fr.iutvalence.sajidepeyronnet.sokoban.Position.getX
-        throw new UnsupportedOperationException();
+    public int getX() {
+        return x;
     }
 
     // TODO getter without return type?
     /** TODO. */
-    public void getY() {
-        // TODO - implement fr.iutvalence.sajidepeyronnet.sokoban.Position.getY
-        throw new UnsupportedOperationException();
+    public int getY() {
+        return y;
     }
+    
 }

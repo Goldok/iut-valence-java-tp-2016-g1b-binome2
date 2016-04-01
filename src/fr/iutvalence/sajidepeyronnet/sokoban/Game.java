@@ -1,5 +1,7 @@
 package fr.iutvalence.sajidepeyronnet.sokoban;
 
+import java.util.Arrays;
+
 /**
  * TODO.
  *
@@ -28,9 +30,50 @@ public class Game {
     	round = 0;
     	this.playerName = playerName; 
     }
+    private int i;
+    private int j=0;
+    
+    private boolean victory() 
+    {
+    	for (i=0; i<targets.length; i++)
+    	{    	
+    		j=0;   		
+    		while (j!=2 && !targets[i].equals(boxes[j]))
+    		{
+    			j++;
+    		}  		
+    		if (!targets[i].equals(boxes[j]))
+    		{
+    			return false;
+    		}
+    	}
+    	return true;
+    }
+    
     
 	public void start() {
 		checkerboard.print();
+		
+		while (!victory())
+		{
+			// TODO Implement interactive
+			char move = 'z';
+			
+			Position anciennePosition = this.player;
+			Position nouvellePosition;
+			
+			if (move == 'z') {
+				anciennePosition.PositionZ();
+			}
+
+	
+		
+		}
+			
+		
+		
+		
+		
 		/*	while (!victory()) {
 				Demander la translation
 				
