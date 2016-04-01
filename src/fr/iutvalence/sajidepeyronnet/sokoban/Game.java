@@ -1,5 +1,8 @@
 package fr.iutvalence.sajidepeyronnet.sokoban;
 
+import static fr.iutvalence.sajidepeyronnet.sokoban.Case.BOX;
+import static fr.iutvalence.sajidepeyronnet.sokoban.Case.WALL;
+
 import java.util.Arrays;
 
 /**
@@ -62,11 +65,16 @@ public class Game {
 			Position anciennePosition = this.player;
 			Position nouvellePosition;
 			
-			if (move == 'z') {
-				anciennePosition.PositionZ();
+			if (move == 'z')
+			{
+				nouvellePosition = anciennePosition.PositionZ();
 			}
-
-	
+			
+			
+			if (box.[nouvellePosition.y][nouvellePosition.x] == 
+			{
+				
+			}
 		
 		}
 			

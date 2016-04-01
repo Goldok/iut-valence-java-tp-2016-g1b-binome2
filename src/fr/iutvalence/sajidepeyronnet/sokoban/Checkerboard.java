@@ -38,7 +38,7 @@ public class Checkerboard {
 	public Checkerboard(int width, int height) {
 		this.width =  width;
 		this.height = height;
-		box = new Case[width][height];
+		box = new Case[width/*y*/][height/*x*/];
 
 		
 		prepareBoard();

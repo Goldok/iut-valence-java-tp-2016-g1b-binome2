@@ -14,7 +14,7 @@ public class Position {
 
     
     
-    public Position(int y0, int x0)
+    public Position(int x0, int y0)
     {
     	this.x=x0;
     	this.y=y0;
@@ -22,11 +22,14 @@ public class Position {
     }
     
     
- /*   public Position getNewPositionZ();
+    public Position PositionZ() 
     {
-    	this.x=x++;
+    	this.y=y++;
+    	return PositionZ();
+    			
     }
-  */  
+    
+    
     // TODO getter without return type?
     /** TODO. */
     public int getX() {
