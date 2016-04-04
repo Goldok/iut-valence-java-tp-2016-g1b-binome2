@@ -16,7 +16,7 @@ public class Case {
     
     
 	/** TODO. */
-    private char skin;
+    protected char skin;
 
     /**
      * TODO.
@@ -27,6 +27,14 @@ public class Case {
     public Case(char skin) {
     	this.skin = skin;
     }
+    
+    /* get skin */
+    
+    public char getSkin()
+    {
+    	return this.skin;
+    }
+    
     
     @Override
     public String toString() {

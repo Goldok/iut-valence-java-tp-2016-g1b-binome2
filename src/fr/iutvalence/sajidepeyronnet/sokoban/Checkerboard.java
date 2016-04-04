@@ -96,6 +96,26 @@ public class Checkerboard {
 		return boxesInitialPositions;
 	}
 	
+	
+	/* Info pour prévoir mouvement*/
+	
+	public char getInfoPosition(Position newPosition)
+	{
+		return box[newPosition.x][newPosition.y].getSkin();
+	}
+	
+	/* Methode Switch Case pour inverser 2 Case du Checkerboard */ 
+	/* Case ou skin ??? */
+	
+	public void switchCase(Position lastPosition , Position newPosition)
+	{
+		Case memo = box[newPosition.x][newPosition.y];
+		box[lastPosition.x][lastPosition.y]=box[newPosition.x][newPosition.y];
+		box[newPosition.x][newPosition.y]=memo;
+		
+	}
+	
+	
 	public Position[] getBoxesFinalPositions() {
 		return boxesFinalPositions;
 	}

@@ -63,19 +63,21 @@ public class Game {
 			char move = 'z';
 			
 			Position anciennePosition = this.player;
-			Position nouvellePosition;
+			Position newPosition;
 			
 			if (move == 'z')
 			{
-				nouvellePosition = anciennePosition.PositionZ();
+				newPosition = anciennePosition.PositionZ();
 			}
 			
+			// teste sur mouvement si Wall  si caisse si vide //
 			
-			if (box.[nouvellePosition.y][nouvellePosition.x] == 
+			if (checkerboard.getInfoPosition(newPosition) == ' ' )
 			{
-				
+				checkerboard.switchCase(anciennePosition, newPosition);
 			}
 		
+			
 		}
 			
 		
