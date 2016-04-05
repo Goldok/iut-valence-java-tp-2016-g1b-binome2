@@ -101,7 +101,7 @@ public class Checkerboard {
 	
 	public char getInfoPosition(Position newPosition)
 	{
-		return box[newPosition.x][newPosition.y].getSkin();
+		return box[newPosition.y][newPosition.x].getSkin();
 	}
 	
 	/* Methode Switch Case pour inverser 2 Case du Checkerboard */ 
@@ -109,9 +109,9 @@ public class Checkerboard {
 	
 	public void switchCase(Position lastPosition , Position newPosition)
 	{
-		Case memo = box[newPosition.x][newPosition.y];
-		box[lastPosition.x][lastPosition.y]=box[newPosition.x][newPosition.y];
-		box[newPosition.x][newPosition.y]=memo;
+		Case memo = box[newPosition.y][newPosition.x];
+		box[lastPosition.y][lastPosition.x]=box[newPosition.y][newPosition.x];
+		box[newPosition.y][newPosition.x]=memo;
 		
 	}
 	

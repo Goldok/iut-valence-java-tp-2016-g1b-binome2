@@ -62,23 +62,63 @@ public class Game {
 			// TODO Implement interactive
 			char move = 'z';
 			
-			Position anciennePosition = this.player;
+			Position lastPosition = this.player;
 			Position newPosition;
 			
 			if (move == 'z')
 			{
-				newPosition = anciennePosition.PositionZ();
+			
+				newPosition = lastPosition.PositionZ();
+			
 			}
+			
 			
 			// teste sur mouvement si Wall  si caisse si vide //
 			
-			if (checkerboard.getInfoPosition(newPosition) == ' ' )
+			if (checkerboard.getInfoPosition(newPosition) == Case.FLOOR )
 			{
-				checkerboard.switchCase(anciennePosition, newPosition);
+				checkerboard.switchCase(lastPosition, newPosition);
+				
 			}
 		
+			if (checkerboard.getInfoPosition(newPosition)== Case.WALL )
+			{
+				return ;
+			}
 			
+			if (checkerboard.getInfoPosition(newPosition)== Case.BOX)
+			{
+				Position boxLastPosition = newPosition ; 
+				Position boxNewPosition = boxLastPosition.PositionZ();
+				
+				if (checkerboard.getInfoPosition(boxNewPosition) == Case.FLOOR )
+				{
+					checkerboard.switchCase(boxLastPosition, boxNewPosition);
+					checkerboard.switchCase(lastPosition, newPosition);
+					
+				}
+			
+				if (checkerboard.getInfoPosition(newPosition)== (Case.WALL))
+				{
+					return ;
+				}
+				if (checkerboard.getInfoPosition(newPosition)== (Case.BOX))
+				{
+					return ;
+				
+				}
+	
 		}
+
+	
+	}
+	
+}
+						
+				
+			
+			
+		
 			
 		
 		
@@ -98,7 +138,7 @@ public class Game {
 			
 		}
 	*/	
-		}
+		
 		
 	
-}
+

@@ -21,13 +21,34 @@ public class Position {
     	
     }
     
+    /* Méthode création NouvellePosition */ 
     
     public Position PositionZ() 
     {
-    	this.y=y++;
-    	return PositionZ();
-    			
+    	this.y=y--;
+    	return PositionZ(); 			
     }
+    
+    public Position PositionS() 
+    {
+    	this.y=y++;
+    	return PositionS(); 			
+    }
+    
+    public Position PositionD() 
+    {
+    	this.x=x++;
+    	return PositionD();
+    }
+    
+    public Position PositionQ() 
+    {
+    	this.x=x--;
+    	return PositionQ(); 			
+    }
+    
+    
+    
     
     
     // TODO getter without return type?
