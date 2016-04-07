@@ -1,10 +1,5 @@
 package fr.iutvalence.sajidepeyronnet.sokoban;
 
-import static fr.iutvalence.sajidepeyronnet.sokoban.Case.BOX;
-import static fr.iutvalence.sajidepeyronnet.sokoban.Case.WALL;
-
-import java.util.Arrays;
-
 /**
  * TODO.
  *
@@ -15,108 +10,93 @@ public class Game {
     /** TODO. */
     private Checkerboard checkerboard;
     /** TODO. */
-    private Position player;
+    private Position     player;
     /** TODO. */
-    private Position[] boxes;
-    
-    private Position[] targets;
+    private Position[]   boxes;
     /** TODO. */
-    private int round;
+    private Position[]   targets;
     /** TODO. */
-    private String playerName;
+    private int          round;
+    /** TODO. */
+    private String       playerName;
 
+    /**
+     * TODO.
+     *
+     * @param playerName TODO
+     */
     public Game(String playerName) {
-    	checkerboard = new Checkerboard();
-    	player = checkerboard.getPlayerInitialPosition();
-    	boxes  = checkerboard.getBoxesInitialPositions();
-    	targets = checkerboard.getBoxesFinalPositions();
-    	round = 0;
-    	this.playerName = playerName; 
+        checkerboard = new Checkerboard();
+        player = checkerboard.getPlayerInitialPosition();
+        boxes = checkerboard.getBoxesInitialPositions();
+        targets = checkerboard.getBoxesFinalPositions();
+        round = 0;
+        this.playerName = playerName;
     }
-    private int i;
-    private int j=0;
-    
-    private boolean victory() 
-    {
-    	for (i=0; i<targets.length; i++)
-    	{    	
-    		j=0;   		
-    		while (j!=2 && !targets[i].equals(boxes[j]))
-    		{
-    			j++;
-    		}  		
-    		if (!targets[i].equals(boxes[j]))
-    		{
-    			return false;
-    		}
-    	}
-    	return true;
-    }
-    
-    
-	public void start() {
-		checkerboard.print();
-		
-		while (!victory())
-		{
-			// TODO Implement interactive
-			char move = 'z';
-			
-			Position lastPosition = this.player;
-			Position newPosition;
-			
-			if (move == 'z')
-			{
-			
-				newPosition = lastPosition.PositionZ();
-			
-			}
-			
-			
-			// teste sur mouvement si Wall  si caisse si vide //
-			
-			if (checkerboard.getInfoPosition(newPosition) == Case.FLOOR )
-			{
-				checkerboard.switchCase(lastPosition, newPosition);
-				
-			}
-		
-			if (checkerboard.getInfoPosition(newPosition)== Case.WALL )
-			{
-				return ;
-			}
-			
-			if (checkerboard.getInfoPosition(newPosition)== Case.BOX)
-			{
-				Position boxLastPosition = newPosition ; 
-				Position boxNewPosition = boxLastPosition.PositionZ();
-				
-				if (checkerboard.getInfoPosition(boxNewPosition) == Case.FLOOR )
-				{
-					checkerboard.switchCase(boxLastPosition, boxNewPosition);
-					checkerboard.switchCase(lastPosition, newPosition);
-					
-				}
-			
-				if (checkerboard.getInfoPosition(newPosition)== (Case.WALL))
-				{
-					return ;
-				}
-				if (checkerboard.getInfoPosition(newPosition)== (Case.BOX))
-				{
-					return ;
-				
-				}
-	
-		}
 
-	
-	}
-	
+    /**
+     * TODO.
+     */
+    public void start() {
+        checkerboard.print();
+
+        while (!victory()) {
+            // TODO Implement interactive
+            char move = 'z';
+
+            Position lastPosition = this.player;
+            Position newPosition = lastPosition;
+
+            if (move == 'z') {
+
+                newPosition = lastPosition.PositionZ();
+            }
+
+            // teste sur mouvement si Wall  si caisse si vide //
+
+            // TODO Should be methods of Checkerboard
+
+            if (checkerboard.getInfoPosition(newPosition) == Case.FLOOR) {
+                checkerboard.switchCase(lastPosition, newPosition);
+            }
+
+            if (checkerboard.getInfoPosition(newPosition) == Case.WALL) {
+                return;
+            }
+
+            if (checkerboard.getInfoPosition(newPosition) == Case.BOX) {
+                Position boxLastPosition = newPosition;
+                Position boxNewPosition = boxLastPosition.PositionZ();
+
+                if (checkerboard.getInfoPosition(boxNewPosition) == Case.FLOOR) {
+                    checkerboard.switchCase(boxLastPosition, boxNewPosition);
+                    checkerboard.switchCase(lastPosition, newPosition);
+                }
+
+                if (checkerboard.getInfoPosition(newPosition) == (Case.WALL)) {
+                    return;
+                }
+                if (checkerboard.getInfoPosition(newPosition) == (Case.BOX)) {
+                    return;
+                }
+            }
+        }
+    }
+
+    private boolean victory() {
+        for (int i = 0; i < targets.length; i++) {
+            int j = 0;
+            while (j != 2 && !targets[i].equals(boxes[j])) {
+                j++;
+            }
+            if (!targets[i].equals(boxes[j])) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
-						
-				
-			
+
 			
 		
 			
@@ -125,7 +105,7 @@ public class Game {
 		
 		
 		/*	while (!victory()) {
-				Demander la translation
+                Demander la translation
 				
 				Calculer la nouvelle position du joueur
 				
@@ -138,7 +118,7 @@ public class Game {
 			
 		}
 	*/	
-		
+
 		
 	
 

@@ -7,37 +7,36 @@ package fr.iutvalence.sajidepeyronnet.sokoban;
  * @version TODO
  */
 public class Case {
-    public static final char WALL = '#';
+    /** TODO. */
+    public static final char WALL   = '#';
+    /** TODO. */
     public static final char PLAYER = '1';
-    public static final char FLOOR = ' ';
-    public static final char BOX = '¤';
+    /** TODO. */
+    public static final char FLOOR  = ' ';
+    /** TODO. */
+    public static final char BOX    = '¤';
+    /** TODO. */
     public static final char FINISH = '°';
-    
-    
-    
-	/** TODO. */
+
+    /** TODO. */
     protected char skin;
 
     /**
      * TODO.
      *
-     * @param string   TODO
-     * @param Position TODO
+     * @param skin TODO
      */
     public Case(char skin) {
-    	this.skin = skin;
+        this.skin = skin;
     }
-    
-    /* get skin */
-    
-    public char getSkin()
-    {
-    	return this.skin;
+
+    /** TODO. */
+    public char getSkin() {
+        return this.skin;
     }
-    
-    
+
     @Override
     public String toString() {
-    	return String.valueOf(skin);
+        return String.valueOf(skin);
     }
 }
