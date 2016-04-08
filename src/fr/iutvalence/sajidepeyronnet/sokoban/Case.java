@@ -14,7 +14,7 @@ public class Case {
     /** TODO. */
     public static final char FLOOR  = ' ';
     /** TODO. */
-    public static final char BOX    = '¤';
+    public static final char BOX   = '¤';
     /** TODO. */
     public static final char FINISH = '°';
 
@@ -26,7 +26,10 @@ public class Case {
      *
      * @param skin TODO
      */
-    public Case(char skin) {
+    
+    
+    
+    public Case (char skin) {
         this.skin = skin;
     }
 
@@ -35,6 +38,26 @@ public class Case {
         return this.skin;
     }
 
+    public boolean isWalkable()
+    {
+    	return (this.getSkin() == FLOOR ); 
+    	
+    }
+    	
+     public boolean isBox()
+     {
+    		if (this.getSkin() == BOX ) 
+        	{
+        		return true ;
+        	}
+        	else 
+        	{
+        		return false;
+        	}
+      }
+    	
+    
+    
     @Override
     public String toString() {
         return String.valueOf(skin);

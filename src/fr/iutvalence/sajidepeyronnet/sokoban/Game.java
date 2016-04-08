@@ -46,12 +46,59 @@ public class Game {
 
             Position lastPosition = this.player;
             Position newPosition = lastPosition;
-
+            Direction direction = Direction.NULL;
+            
             if (move == 'z') {
+            	direction = Direction.HAUT;
+            }
+            
+            if (move == 'd') {
+            	direction = Direction.DROITE;
+            }
+            if (move == 'q') {
+            	direction = Direction.GAUCHE;
+            }
+            if (move == 's') {
+            	direction = Direction.BAS;
+            }
+                        
+            
+            
+            
+            newPosition = lastPosition.translate(direction);
 
-                newPosition = lastPosition.PositionZ();
+            if (newPosition == lastPosition) {
+            	continue;
+            }
+            
+            if (checkerboard.isWalkable(newPosition)==true) {
+            		checkerboard.switchCase(lastPosition, newPosition);
+            		continue;
+            	}
+            
+                if (checkerboard.isBox(newPosition)==true)
+                {
+                	Position boxLastPosition = newPosition;
+                    Position boxNewPosition = boxLastPosition.translate(direction);
+                    
+                    if (checkerboard.isWalkable(boxNewPosition)==true)
+                    {
+                    	checkerboard.switchCase(lastPosition, newPosition);
+                    	checkerboard.switchCase(boxLastPosition, boxNewPosition);
+                    }
+                    
+                    
+                    
+                }
+                
+                
             }
 
+            
+            
+            
+            
+            
             // teste sur mouvement si Wall  si caisse si vide //
 
             // TODO Should be methods of Checkerboard

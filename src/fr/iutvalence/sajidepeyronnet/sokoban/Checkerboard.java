@@ -15,7 +15,8 @@ import static fr.iutvalence.sajidepeyronnet.sokoban.Case.WALL;
 public class Checkerboard {
     /** Default Checkerboard width. */
     private static final int DEFAULT_DIMENSION_WIDTH  = 10;
-    /** Default Checkerboard Height. */
+    /** Default Checker
+     * board Height. */
     private static final int DEFAULT_DIMENSION_HEIGHT = 10;
     /** Checkers. */
     private final Case[][]   box;
@@ -63,21 +64,44 @@ public class Checkerboard {
         return boxesInitialPositions;
     }
 
-    /** TODO. */
-    public char getInfoPosition(Position newPosition) {
-        return box[newPosition.y][newPosition.x].getSkin();
-    }
-
     public Position[] getBoxesFinalPositions() {
         return boxesFinalPositions;
     }
 
+    public boolean isWalkable(Position newPosition0)
+    {
+    	if (box[newPosition0.y][newPosition0.x].isWalkable() == true )
+    	{
+    		return true;
+    	}
+    	else 
+    	{
+    		return false;
+    	}
+    }
+    
+    public boolean isBox(Position newPosition0)
+    {
+    	if (box[newPosition0.y][newPosition0.x].isBox() == true )
+    	{
+    		return true;
+    	}
+    	else 
+    	{
+    		return false;
+    	}
+    }
+    
+    
     /** TODO. */
     public void switchCase(Position lastPosition, Position newPosition) {
-        Case memo = box[newPosition.y][newPosition.x];
-        box[lastPosition.y][lastPosition.x] = box[newPosition.y][newPosition.x];
-        box[newPosition.y][newPosition.x] = memo;
-    }
+    		 Case memo = box[lastPosition.y][lastPosition.x];
+    	     box[lastPosition.y][lastPosition.x] = box[newPosition.y][newPosition.x];
+    	     box[newPosition.y][newPosition.x] = memo;
+    	}
+    	
+    		
+    
 
     /** TODO. */
     public void print() {
