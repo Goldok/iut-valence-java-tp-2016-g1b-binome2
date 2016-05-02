@@ -1,8 +1,8 @@
 package fr.iutvalence.sajidepeyronnet.sokoban;
 
 public enum Direction {
-	HAUT(0,1),
-	BAS(0,-1),
+	HAUT(0,-1),
+	BAS(0,+1),
 	GAUCHE(-1,0),
 	DROITE(1,0),
 	NULL(0,0);

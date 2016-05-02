@@ -40,22 +40,20 @@ public class Case {
 
     public boolean isWalkable()
     {
-    	return (this.getSkin() == FLOOR ); 
+    	return (this.getSkin() == FLOOR); 
     	
     }
     	
      public boolean isBox()
      {
-    		if (this.getSkin() == BOX ) 
-        	{
-        		return true ;
-        	}
-        	else 
-        	{
-        		return false;
-        	}
-      }
-    	
+    	 return (this.getSkin() == BOX );
+     }
+        
+     public boolean isFinish()
+     {
+    	 return (this.getSkin() == FINISH );
+     }
+     
     
     
     @Override

@@ -17,7 +17,7 @@ public class Checkerboard {
     private static final int DEFAULT_DIMENSION_WIDTH  = 10;
     /** Default Checker
      * board Height. */
-    private static final int DEFAULT_DIMENSION_HEIGHT = 10;
+    private static final int DEFAULT_DIMENSION_HEIGHT = 20;
     /** Checkers. */
     private final Case[][]   box;
     /** Checkerboard's Width */
@@ -70,27 +70,20 @@ public class Checkerboard {
 
     public boolean isWalkable(Position newPosition0)
     {
-    	if (box[newPosition0.y][newPosition0.x].isWalkable() == true )
-    	{
-    		return true;
-    	}
-    	else 
-    	{
-    		return false;
-    	}
-    }
+    		return box[newPosition0.y][newPosition0.x].isWalkable();
+    }    	
+    
+    public boolean isFinish(Position newPosition0)
+    {
+    		return box[newPosition0.y][newPosition0.x].isFinish();
+    }    	
+    
     
     public boolean isBox(Position newPosition0)
-    {
-    	if (box[newPosition0.y][newPosition0.x].isBox() == true )
-    	{
-    		return true;
-    	}
-    	else 
-    	{
-    		return false;
-    	}
-    }
+   	{
+    	return box[newPosition0.y][newPosition0.x].isBox();
+   	}
+    
     
     
     /** TODO. */
@@ -99,7 +92,17 @@ public class Checkerboard {
     	     box[lastPosition.y][lastPosition.x] = box[newPosition.y][newPosition.x];
     	     box[newPosition.y][newPosition.x] = memo;
     	}
-    	
+    
+    public void replaceCase(Position lastPosition, Position newPosition)
+    {
+    	box[newPosition.y][newPosition.x] = box[lastPosition.y][lastPosition.x];
+    	box[lastPosition.y][lastPosition.x] = new Case(FLOOR);
+    }
+    
+    public void createFinish(Position lastPosition)
+    {
+    	box[lastPosition.y][lastPosition.x] = new Case(FINISH);
+    }
     		
     
 
@@ -115,31 +118,42 @@ public class Checkerboard {
     }
 
     /** TODO. */
+    
+    // Fonction aléatoire prépareboard
     private void prepareBoard() {
 
         for (int i = 0; i < width; i++) {
 
             for (int j = 0; j < height; j++) {
-
+            
                 box[i][j] = new Case(FLOOR);
+                
+                if (i==0)
+                {box[i][j] = new Case(WALL);}
+                if (i==width-1)
+                {box[i][j] = new Case(WALL);}
+                if (j==0)
+                {box[i][j] = new Case(WALL);}
+                if (j==height-1)
+                {box[i][j] = new Case(WALL);}
             }
         }
 
         boxesInitialPositions = new Position[2];
         boxesFinalPositions = new Position[2];
 
-        playerInitialPosition = new Position(5, 5);
+        playerInitialPosition = new Position(1,1);
 
-        boxesInitialPositions[0] = new Position(5, 6);
+        boxesInitialPositions[0] = new Position(2, 2);
         boxesInitialPositions[1] = new Position(6, 7);
 
-        boxesFinalPositions[0] = new Position(8, 8);
-        boxesFinalPositions[1] = new Position(9, 8);
+        boxesFinalPositions[0] = new Position(3, 3);
+        boxesFinalPositions[1] = new Position(5, 12);
 
         box[playerInitialPosition.x][playerInitialPosition.y] = new Case(PLAYER);
+        
 
-        box[0][0] = new Case(WALL);
-        box[0][1] = new Case(WALL);
+        
 
         box[boxesInitialPositions[0].x][boxesInitialPositions[0].y] = new Case(BOX);
         box[boxesInitialPositions[1].x][boxesInitialPositions[1].y] = new Case(BOX);
