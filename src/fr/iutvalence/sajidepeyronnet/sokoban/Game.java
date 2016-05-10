@@ -1,6 +1,7 @@
 package fr.iutvalence.sajidepeyronnet.sokoban;
 
 import static fr.iutvalence.sajidepeyronnet.sokoban.Case.FLOOR;
+import static fr.iutvalence.sajidepeyronnet.sokoban.Case.PLAYER;
 
 import java.util.Scanner;
 
@@ -24,6 +25,7 @@ public class Game {
     /** TODO. */
     private String       playerName;
     
+    private int a=0;
         /**
      * TODO.
      *
@@ -73,7 +75,7 @@ public class Game {
             	direction = Direction.BAS;
             }
              
- 
+            
             
             
             newPosition = lastPosition.translate(direction);
@@ -82,19 +84,30 @@ public class Game {
             	continue;
             }
             
+            if (checkerboard.isOnFinish(lastPosition) && a==1)
+            {
+            	checkerboard.switchCase(lastPosition, newPosition);
+            	checkerboard.createFinish(lastPosition, newPosition);
+            	player = newPosition;
+            	a=0;
+            }   
             if (checkerboard.isWalkable(newPosition)) {
             	checkerboard.switchCase(lastPosition, newPosition);
             	player = newPosition;
             	continue;
             }
             
-            if (checkerboard.isFinish(newPosition)==true)
+            if (checkerboard.isFinish(newPosition))
             {
              	checkerboard.replaceCase(lastPosition, newPosition);	
              	player = newPosition;
+             	a=1;
+             	continue;
+             	
              	
             }
             
+
 
                
            
@@ -122,10 +135,7 @@ public class Game {
                     
                 }
                 
-                if (checkerboard.isFinish(lastPosition)==true)
-                {
-                	checkerboard.createFinish(lastPosition);
-                }   
+
             }
                        
             

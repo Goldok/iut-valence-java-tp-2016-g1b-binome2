@@ -1,10 +1,6 @@
 package fr.iutvalence.sajidepeyronnet.sokoban;
 
-import static fr.iutvalence.sajidepeyronnet.sokoban.Case.BOX;
-import static fr.iutvalence.sajidepeyronnet.sokoban.Case.FINISH;
-import static fr.iutvalence.sajidepeyronnet.sokoban.Case.FLOOR;
-import static fr.iutvalence.sajidepeyronnet.sokoban.Case.PLAYER;
-import static fr.iutvalence.sajidepeyronnet.sokoban.Case.WALL;
+import static fr.iutvalence.sajidepeyronnet.sokoban.Case.*;
 
 /**
  * TODO.
@@ -78,6 +74,12 @@ public class Checkerboard {
     		return box[newPosition0.y][newPosition0.x].isFinish();
     }    	
     
+    public boolean isOnFinish(Position newPosition0)
+    {
+    		return box[newPosition0.y][newPosition0.x].isOnFinish();
+    }    	
+    
+    
     
     public boolean isBox(Position newPosition0)
    	{
@@ -95,13 +97,17 @@ public class Checkerboard {
     
     public void replaceCase(Position lastPosition, Position newPosition)
     {
-    	box[newPosition.y][newPosition.x] = box[lastPosition.y][lastPosition.x];
+    
+		box[newPosition.y][newPosition.x] = new Case(ON_FINISH);
     	box[lastPosition.y][lastPosition.x] = new Case(FLOOR);
+
     }
     
-    public void createFinish(Position lastPosition)
+    public void createFinish(Position lastPosition, Position newPosition)
     {
     	box[lastPosition.y][lastPosition.x] = new Case(FINISH);
+    	box[newPosition.y][newPosition.x] = new Case(PLAYER);
+ 
     }
     		
     
@@ -153,7 +159,6 @@ public class Checkerboard {
         box[playerInitialPosition.x][playerInitialPosition.y] = new Case(PLAYER);
         
 
-        
 
         box[boxesInitialPositions[0].x][boxesInitialPositions[0].y] = new Case(BOX);
         box[boxesInitialPositions[1].x][boxesInitialPositions[1].y] = new Case(BOX);

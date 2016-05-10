@@ -12,6 +12,8 @@ public class Case {
     /** TODO. */
     public static final char PLAYER = '1';
     /** TODO. */
+    
+    public static final char ON_FINISH = '2';
     public static final char FLOOR  = ' ';
     /** TODO. */
     public static final char BOX   = '¤';
@@ -53,6 +55,12 @@ public class Case {
      {
     	 return (this.getSkin() == FINISH );
      }
+     
+     public boolean isOnFinish()
+     {
+    	 return (this.getSkin() == ON_FINISH );
+     }
+     
      
     
     
