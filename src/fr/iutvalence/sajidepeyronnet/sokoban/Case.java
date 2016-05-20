@@ -16,9 +16,10 @@ public class Case {
     public static final char ON_FINISH = '2';
     public static final char FLOOR  = ' ';
     /** TODO. */
-    public static final char BOX   = 'Â¤';
+    public static final char BOX   = '¤';
     /** TODO. */
-    public static final char FINISH = 'Â°';
+    public static final char BOX_ON_FINISH   = '$';
+    public static final char FINISH = '°';
 
     /** TODO. */
     protected char skin;
@@ -59,6 +60,11 @@ public class Case {
      public boolean isOnFinish()
      {
     	 return (this.getSkin() == ON_FINISH );
+     }
+     
+     public boolean boxIsOnFinish()
+     {
+    	 return (this.getSkin() == BOX_ON_FINISH );
      }
      
      

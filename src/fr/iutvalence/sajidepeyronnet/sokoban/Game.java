@@ -84,8 +84,9 @@ public class Game {
             	continue;
             }
             
-            if (checkerboard.isOnFinish(lastPosition) && a==1)
-            {
+            
+            if (checkerboard.isOnFinish(lastPosition))
+            {  // TODO Remplacer le switch par juste une affectation
             	checkerboard.switchCase(lastPosition, newPosition);
             	checkerboard.createFinish(lastPosition, newPosition);
             	player = newPosition;
@@ -96,49 +97,67 @@ public class Game {
             	player = newPosition;
             	continue;
             }
-            
+
             if (checkerboard.isFinish(newPosition))
             {
-             	checkerboard.replaceCase(lastPosition, newPosition);	
-             	player = newPosition;
-             	a=1;
-             	continue;
-             	
-             	
-            }
-            
+            	checkerboard.replaceCase(lastPosition, newPosition);	
+            	player = newPosition;
+            	a=1;
+            	continue;
 
-
-               
-           
-            
-                if (checkerboard.isBox(newPosition)==true)
-                {
-                	Position boxLastPosition = newPosition;
-                    Position boxNewPosition = boxLastPosition.translate(direction);
-                    
-                    if (checkerboard.isWalkable(boxNewPosition)==true)
-                    {
-                    	checkerboard.switchCase(boxLastPosition, boxNewPosition);
-                    	checkerboard.switchCase(lastPosition, newPosition);
-                    	player = newPosition;
-                    }
-                    
-                   if (checkerboard.isFinish(boxNewPosition)==true)
-                   {
-                    	
-                    	checkerboard.replaceCase(boxLastPosition, boxNewPosition);
-                    	checkerboard.switchCase(lastPosition, newPosition);
-                        player = newPosition;
-
-                   }
-                    
-                }
-                
 
             }
-                       
-            
+
+
+
+            /* cas des box*/
+
+
+            if (checkerboard.isBox(newPosition))
+            {
+            	Position boxLastPosition = newPosition;
+            	Position boxNewPosition = boxLastPosition.translate(direction);
+
+
+
+
+            	if (checkerboard.isWalkable(boxNewPosition)==true)
+            	{
+            		checkerboard.switchCase(boxLastPosition, boxNewPosition);
+            		checkerboard.switchCase(lastPosition, newPosition);
+            		player = newPosition;
+            	}
+
+            	/* Si caisse => finish */ 
+
+            			if (checkerboard.isFinish(boxNewPosition)==true)
+            			{
+
+
+            				checkerboard.switchCaseOnFinish(boxLastPosition, boxNewPosition, lastPosition);
+
+
+            				player = newPosition;
+
+
+
+            			}
+            }
+            if (checkerboard.boxIsOnFinish(newPosition)==true){
+
+            	Position boxNewPosition = newPosition.translate(direction);
+
+            	checkerboard.switchBoxOnFinish(lastPosition, newPosition, boxNewPosition);
+
+            	player = newPosition;
+            	a=1;                	   
+            }
+
+
+
+        }
+
+
 
     }
     			// verifier que victory fonctionne ?

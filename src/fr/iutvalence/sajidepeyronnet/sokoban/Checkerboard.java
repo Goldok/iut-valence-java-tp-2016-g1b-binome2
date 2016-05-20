@@ -79,7 +79,10 @@ public class Checkerboard {
     		return box[newPosition0.y][newPosition0.x].isOnFinish();
     }    	
     
-    
+    public boolean boxIsOnFinish(Position newPosition0)
+    {
+    		return box[newPosition0.y][newPosition0.x].boxIsOnFinish();
+    }    	
     
     public boolean isBox(Position newPosition0)
    	{
@@ -93,7 +96,20 @@ public class Checkerboard {
     		 Case memo = box[lastPosition.y][lastPosition.x];
     	     box[lastPosition.y][lastPosition.x] = box[newPosition.y][newPosition.x];
     	     box[newPosition.y][newPosition.x] = memo;
+    }
+    	     
+    public void switchCaseOnFinish(Position lastPosition, Position newPosition, Position firstPosition) {
+        	 	 box[newPosition.y][newPosition.x] = new Case(BOX_ON_FINISH);  	     
+        	 	box[lastPosition.y][lastPosition.x] = new Case(PLAYER);
+        	 	box[firstPosition.y][firstPosition.x] =new Case(FLOOR);
+        	 	
     	}
+    
+    public void switchBoxOnFinish(Position lastPosition, Position newPosition, Position boxNewPosition) {
+	 	 box[boxNewPosition.y][boxNewPosition.x] = new Case(BOX);	     
+	 	box[lastPosition.y][lastPosition.x] = new Case(FLOOR);
+	 	box[newPosition.y][newPosition.x] =new Case(ON_FINISH);
+    }
     
     public void replaceCase(Position lastPosition, Position newPosition)
     {
@@ -151,7 +167,7 @@ public class Checkerboard {
         playerInitialPosition = new Position(1,1);
 
         boxesInitialPositions[0] = new Position(2, 2);
-        boxesInitialPositions[1] = new Position(6, 7);
+        boxesInitialPositions[1] = new Position(5, 5);
 
         boxesFinalPositions[0] = new Position(3, 3);
         boxesFinalPositions[1] = new Position(5, 12);
