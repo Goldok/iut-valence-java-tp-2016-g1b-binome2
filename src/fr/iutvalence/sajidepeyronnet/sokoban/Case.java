@@ -6,72 +6,48 @@ package fr.iutvalence.sajidepeyronnet.sokoban;
  * @author TODO
  * @version TODO
  */
-public class Case {
+class Case {
     /** TODO. */
-    public static final char WALL   = '#';
+    static final char WALL   = '#';
     /** TODO. */
-    public static final char PLAYER = '1';
+    static final char FLOOR  = ' ';
     /** TODO. */
-    
-    public static final char ON_FINISH = '2';
-    public static final char FLOOR  = ' ';
-    /** TODO. */
-    public static final char BOX   = '¤';
-    /** TODO. */
-    public static final char BOX_ON_FINISH   = '$';
-    public static final char FINISH = '°';
+    static final char FINISH = '*';
 
     /** TODO. */
-    protected char skin;
+    static final char PLAYER           = '1';
+    /** TODO. */
+    static final char PLAYER_ON_FINISH = '2';
+
+    /** TODO. */
+    static final char BOX           = 'B';
+    /** TODO. */
+    static final char BOX_ON_FINISH = '$';
+
+    /** TODO. */
+    private final char skin;
 
     /**
      * TODO.
      *
      * @param skin TODO
      */
-    
-    
-    
-    public Case (char skin) {
+    Case(char skin) {
         this.skin = skin;
     }
 
-    /** TODO. */
-    public char getSkin() {
-        return this.skin;
-    }
-
-    public boolean isWalkable()
-    {
-    	return (this.getSkin() == FLOOR); 
-    	
-    }
-    	
-     public boolean isBox()
-     {
-    	 return (this.getSkin() == BOX );
-     }
-        
-     public boolean isFinish()
-     {
-    	 return (this.getSkin() == FINISH );
-     }
-     
-     public boolean isOnFinish()
-     {
-    	 return (this.getSkin() == ON_FINISH );
-     }
-     
-     public boolean boxIsOnFinish()
-     {
-    	 return (this.getSkin() == BOX_ON_FINISH );
-     }
-     
-     
-    
-    
     @Override
     public String toString() {
         return String.valueOf(skin);
+    }
+
+    /** TODO. */
+    boolean isWalkable() {
+        return (skin == FLOOR) || (skin == FINISH);
+    }
+
+    /** TODO. */
+    boolean isBox() {
+        return (skin == BOX) || (skin == BOX_ON_FINISH);
     }
 }

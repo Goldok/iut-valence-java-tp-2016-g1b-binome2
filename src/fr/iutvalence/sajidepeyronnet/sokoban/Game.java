@@ -1,9 +1,12 @@
 package fr.iutvalence.sajidepeyronnet.sokoban;
 
-import static fr.iutvalence.sajidepeyronnet.sokoban.Case.FLOOR;
-import static fr.iutvalence.sajidepeyronnet.sokoban.Case.PLAYER;
-
 import java.util.Scanner;
+
+import static fr.iutvalence.sajidepeyronnet.sokoban.Direction.BAS;
+import static fr.iutvalence.sajidepeyronnet.sokoban.Direction.DROITE;
+import static fr.iutvalence.sajidepeyronnet.sokoban.Direction.GAUCHE;
+import static fr.iutvalence.sajidepeyronnet.sokoban.Direction.HAUT;
+import static fr.iutvalence.sajidepeyronnet.sokoban.Direction.NULL;
 
 /**
  * TODO.
@@ -11,22 +14,17 @@ import java.util.Scanner;
  * @author TODO
  * @version TODO
  */
-public class Game {
+class Game {
     /** TODO. */
-    private Checkerboard checkerboard;
+    private final Checkerboard checkerboard;
     /** TODO. */
-    private Position     player;
+    private final Position[]   boxes;
     /** TODO. */
-    private Position[]   boxes;
+    private final Position[]   targets;
     /** TODO. */
-    private Position[]   targets;
-    /** TODO. */
-    private int          round;
-    /** TODO. */
-    private String       playerName;
-    
-    private int a=0;
-        /**
+    private       Position     player;
+
+    /**
      * TODO.
      *
      * @param playerName TODO
@@ -35,9 +33,7 @@ public class Game {
         checkerboard = new Checkerboard();
         player = checkerboard.getPlayerInitialPosition();
         boxes = checkerboard.getBoxesInitialPositions();
-        targets = checkerboard.getBoxesFinalPositions();
-        round = 0;
-        this.playerName = playerName;
+        targets = checkerboard.getTargets();
     }
 
     /**
@@ -45,130 +41,83 @@ public class Game {
      */
     public void start() {
         Scanner sc = new Scanner(System.in);
-        
+
         while (!victory()) {
-        	
             checkerboard.print();
 
-            // TODO Implement interactive
-        	
-        	// DEMANDER MOUVEMENT JOUEUR
-        	
+            // Get the direction from the user.
+            final char move = sc.nextLine().charAt(0);
+            final Direction direction = charToDirection(move);
 
-            char move = sc.nextLine().charAt(0);
-            	
-            Position lastPosition = this.player;
-            Position newPosition = lastPosition;
-            Direction direction = Direction.NULL;
-            
-            if (move == 'z') {
-            	direction = Direction.HAUT;
-            }
-            
-            if (move == 'd') {
-            	direction = Direction.DROITE;
-            }
-            if (move == 'q') {
-            	direction = Direction.GAUCHE;
-            }
-            if (move == 's') {
-            	direction = Direction.BAS;
-            }
-             
-            
-            
-            
-            newPosition = lastPosition.translate(direction);
+            // Calculate the two positions (last and new one).
+            final Position previousPlayerPosition = player;
+            final Position newPlayerPosition = previousPlayerPosition.translate(direction);
 
-            if (newPosition == lastPosition) {
-            	continue;
-            }
-            
-            
-            if (checkerboard.isOnFinish(lastPosition))
-            {  // TODO Remplacer le switch par juste une affectation
-            	checkerboard.switchCase(lastPosition, newPosition);
-            	checkerboard.createFinish(lastPosition, newPosition);
-            	player = newPosition;
-            	a=0;
-            }   
-            if (checkerboard.isWalkable(newPosition)) {
-            	checkerboard.switchCase(lastPosition, newPosition);
-            	player = newPosition;
-            	continue;
+            // No movement
+            if (newPlayerPosition.equals(previousPlayerPosition)) {
+                continue;
             }
 
-            if (checkerboard.isFinish(newPosition))
-            {
-            	checkerboard.replaceCase(lastPosition, newPosition);	
-            	player = newPosition;
-            	a=1;
-            	continue;
-
-
+            // Simple movement
+            if (checkerboard.isWalkable(newPlayerPosition)) {
+                checkerboard.moveObject(previousPlayerPosition, newPlayerPosition);
+                player = newPlayerPosition;
+                continue;
             }
 
+            // Move a box
+            if (checkerboard.isMoveable(newPlayerPosition)) {
+                final Position previousBoxPosition = newPlayerPosition;
+                final Position newBoxPosition = previousBoxPosition.translate(direction);
 
-
-            /* cas des box*/
-
-
-            if (checkerboard.isBox(newPosition))
-            {
-            	Position boxLastPosition = newPosition;
-            	Position boxNewPosition = boxLastPosition.translate(direction);
-
-
-
-
-            	if (checkerboard.isWalkable(boxNewPosition)==true)
-            	{
-            		checkerboard.switchCase(boxLastPosition, boxNewPosition);
-            		checkerboard.switchCase(lastPosition, newPosition);
-            		player = newPosition;
-            	}
-
-            	/* Si caisse => finish */ 
-
-            			if (checkerboard.isFinish(boxNewPosition)==true)
-            			{
-
-
-            				checkerboard.switchCaseOnFinish(boxLastPosition, boxNewPosition, lastPosition);
-
-
-            				player = newPosition;
-
-
-
-            			}
+                if (checkerboard.isWalkable(newBoxPosition)) {
+                    checkerboard.moveObject(previousBoxPosition, newBoxPosition);
+                    checkerboard.moveObject(previousPlayerPosition, newPlayerPosition);
+                    player = newPlayerPosition;
+                    for (int i = 0; i < boxes.length; i++) {
+                        if (boxes[i].equals(previousBoxPosition)) {
+                            boxes[i] = newBoxPosition;
+                        }
+                    }
+                }
             }
-            if (checkerboard.boxIsOnFinish(newPosition)==true){
+        }
+    }
 
-            	Position boxNewPosition = newPosition.translate(direction);
+    /** TODO. */
+    private Direction charToDirection(char move) {
+        Direction direction = NULL;
 
-            	checkerboard.switchBoxOnFinish(lastPosition, newPosition, boxNewPosition);
-
-            	player = newPosition;
-            	a=1;                	   
-            }
-
-
-
+        if (move == 'z') {
+            direction = HAUT;
         }
 
+        if (move == 'd') {
+            direction = DROITE;
+        }
 
+        if (move == 'q') {
+            direction = GAUCHE;
+        }
 
+        if (move == 's') {
+            direction = BAS;
+        }
+
+        return direction;
     }
-    			// verifier que victory fonctionne ?
+
+    /** TODO. */
     private boolean victory() {
-        for (int i = 0; i < targets.length; i++) {
-            int j = 0;
-            while (j != boxes.length && !targets[i].equals(boxes[j])) {
-                j++;
+        for (final Position target : targets) {
+            boolean empty = true;
+            for (final Position box : boxes) {
+                if (box.equals(target)) {
+                    empty = false;
+                    break;
+                }
             }
-            
-            if (!targets[i].equals(boxes[j-1])) {
+            if (empty) {
                 return false;
             }
         }
