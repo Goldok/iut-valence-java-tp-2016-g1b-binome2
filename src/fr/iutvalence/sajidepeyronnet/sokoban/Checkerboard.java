@@ -60,12 +60,12 @@ class Checkerboard {
         board[3][4] = new Case(FINISH);
     }
 
-    /** TODO. */
+    /** Function to get the player's position. */
     Position getPlayerInitialPosition() {
         return playerInitialPosition;
     }
 
-    /** TODO. */
+    /** Function to get boxes's initial Positions. */
     Position[] getBoxesInitialPositions() {
         return boxesInitialPositions.clone();
     }
@@ -75,16 +75,17 @@ class Checkerboard {
         return targets.clone();
     }
 
-    /** TODO. */
+    /** Function to know if a position is walkable.  */
     boolean isWalkable(Position position) {
         return board[position.y()][position.x()].isWalkable();
     }
-
+    
+    /** Function to know if a position can be move.  */
     boolean isMoveable(Position position) {
         return board[position.y()][position.x()].isBox();
     }
 
-    /** TODO. */
+    /** Function to move an object to a new position. */
     void moveObject(Position lastPosition, Position newPosition) {
         int lY = lastPosition.y();
         int lX = lastPosition.x();
@@ -114,7 +115,7 @@ class Checkerboard {
         }
     }
 
-    /** TODO. */
+    /** Function to print the checkerboard */
     void print() {
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {

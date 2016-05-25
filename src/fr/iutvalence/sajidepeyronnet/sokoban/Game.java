@@ -82,9 +82,13 @@ class Game {
                 }
             }
         }
+        //* If we ended the game by a victory/* 
+        if (victory()) {
+        	System.out.println("Victory !");
+        }
     }
 
-    /** TODO. */
+    /** Get a direction, depend of the move */
     private Direction charToDirection(char move) {
         Direction direction = NULL;
 
@@ -107,7 +111,7 @@ class Game {
         return direction;
     }
 
-    /** TODO. */
+    /** Condition of victory, boxes's positions have to be the same has targets's positions */
     private boolean victory() {
         for (final Position target : targets) {
             boolean empty = true;

@@ -7,24 +7,24 @@ package fr.iutvalence.sajidepeyronnet.sokoban;
  * @version TODO
  */
 class Case {
-    /** TODO. */
+    /** Skin of walls */
     static final char WALL   = '#';
-    /** TODO. */
+    /** Skin of the floor */
     static final char FLOOR  = ' ';
-    /** TODO. */
+    /** Skin of finish targets */
     static final char FINISH = '*';
 
-    /** TODO. */
+    /** Skin of the player */
     static final char PLAYER           = '1';
-    /** TODO. */
-    static final char PLAYER_ON_FINISH = '2';
+    /** Skin of the player on a finish target. */
+    static final char PLAYER_ON_FINISH = '1';
 
-    /** TODO. */
+    /** Skin of boxes. */
     static final char BOX           = 'B';
-    /** TODO. */
-    static final char BOX_ON_FINISH = '$';
+    /** Skin of boxes on a finish target. */
+    static final char BOX_ON_FINISH = 'B';
 
-    /** TODO. */
+    /** Skin of cases. */
     private final char skin;
 
     /**
@@ -41,12 +41,12 @@ class Case {
         return String.valueOf(skin);
     }
 
-    /** TODO. */
+    /** To know if the case is walkable (means floor or finish) */
     boolean isWalkable() {
         return (skin == FLOOR) || (skin == FINISH);
     }
 
-    /** TODO. */
+    /** To know if the case is a box (means box or box on target) */
     boolean isBox() {
         return (skin == BOX) || (skin == BOX_ON_FINISH);
     }

@@ -1,6 +1,6 @@
 package fr.iutvalence.sajidepeyronnet.sokoban;
 
-/** TODO. */
+/** Enumeration of mooves that can have the player */
 enum Direction {
     /** TODO. */
     HAUT(0, -1), /** TODO. */
@@ -14,18 +14,18 @@ enum Direction {
     /** TODO. */
     int dY;
 
-    /** TODO. */
+    /** Constructor of direction with values at x and y of the direction */
     Direction(int dX, int dY) {
         this.dX = dX;
         this.dY = dY;
     }
 
-    /** TODO. */
+    /** Return the value at x of the direction. */
     public int dX() {
         return dX;
     }
 
-    /** TODO. */
+    /** Return the value at y of the direction. */
     public int dY() {
         return dY;
     }
