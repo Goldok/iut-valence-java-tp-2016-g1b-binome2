@@ -8,6 +8,8 @@ import static fr.iutvalence.sajidepeyronnet.sokoban.Case.PLAYER;
 import static fr.iutvalence.sajidepeyronnet.sokoban.Case.PLAYER_ON_FINISH;
 import static fr.iutvalence.sajidepeyronnet.sokoban.Case.WALL;
 
+import java.util.ArrayList;
+
 /**
  * TODO.
  *
@@ -21,14 +23,17 @@ class Checkerboard {
     private static final int HEIGHT = 20;
     /** Checkers. */
     private final Case[][]   board;
-    /** TODO. */
+    /** A player position */
     private       Position   playerInitialPosition;
+    /** A list of boxes initial positions when we creat them . */
+    private      Position[] boxesInitialPositions;
     /** TODO. */
-    private       Position[] boxesInitialPositions;
-    /** TODO. */
-    private       Position[] targets;
+    private      Position[] targets;
 
-    /** TODO. */
+    /** Creation of checkerboard with targets, box and a player 
+     * 
+     * 
+     * */
     Checkerboard() {
 
         board = new Case[WIDTH][HEIGHT];
@@ -60,12 +65,16 @@ class Checkerboard {
         board[3][4] = new Case(FINISH);
     }
 
-    /** Function to get the player's position. */
+    /** Function to get the player's position.
+     * @return the playerInitialPosition */
     Position getPlayerInitialPosition() {
         return playerInitialPosition;
     }
 
-    /** Function to get boxes's initial Positions. */
+    /** Function to get boxes's initial Positions.
+     * @return boxesInitialPosition
+     *  */
+    
     Position[] getBoxesInitialPositions() {
         return boxesInitialPositions.clone();
     }
@@ -75,17 +84,23 @@ class Checkerboard {
         return targets.clone();
     }
 
-    /** Function to know if a position is walkable.  */
+    /** Function to know if a position is walkable.
+     * @return if it's walkable  */
     boolean isWalkable(Position position) {
         return board[position.y()][position.x()].isWalkable();
     }
     
-    /** Function to know if a position can be move.  */
+    /** Function to know if a position can be move. 
+     * @return if it's moveable
+     *  */
     boolean isMoveable(Position position) {
         return board[position.y()][position.x()].isBox();
     }
 
-    /** Function to move an object to a new position. */
+    /** Function to move an object to a new position. 
+     * @param last position the previous Position
+     * @param new position the new Position
+     * */
     void moveObject(Position lastPosition, Position newPosition) {
         int lY = lastPosition.y();
         int lX = lastPosition.x();

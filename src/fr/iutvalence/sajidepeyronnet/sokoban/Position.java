@@ -9,23 +9,27 @@ import java.util.Objects;
  * @version TODO
  */
 class Position {
-    /** TODO. */
+    /**  x position. */
     private final int x;
-    /** TODO. */
+    /**  y position */
     private final int y;
 
-    /** TODO. */
+    /** we creat a Position. 
+     * @param x0 the x
+     * @param y0 the y*/
     Position(int x0, int y0) {
         this.x = x0;
         this.y = y0;
     }
 
-    /** TODO. */
+    /** get X.
+     * @return x */
     int x() {
         return x;
     }
 
-    /** TODO. */
+    /** get Y
+     * @return y. */
     int y() {
         return y;
     }
@@ -49,12 +53,8 @@ class Position {
     }
 
     /**
-     * TODO.
-     *
-     * @param d TODO
-     *
-
-     * @return TODO
+     * @param d a direction
+     * @return new position
      */
     Position translate(Direction d) {
         return new Position(x + d.dX(), y + d.dY());

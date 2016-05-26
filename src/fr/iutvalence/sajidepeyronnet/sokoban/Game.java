@@ -9,10 +9,8 @@ import static fr.iutvalence.sajidepeyronnet.sokoban.Direction.HAUT;
 import static fr.iutvalence.sajidepeyronnet.sokoban.Direction.NULL;
 
 /**
- * TODO.
- *
- * @author TODO
- * @version TODO
+ * @author Sajide Adil
+ * @author Peyronnet Cedric
  */
 class Game {
     /** TODO. */
@@ -23,11 +21,13 @@ class Game {
     private final Position[]   targets;
     /** TODO. */
     private       Position     player;
+    
+    public int score=0;
 
     /**
      * TODO.
      *
-     * @param playerName TODO
+     * @param playerName the name of the player
      */
     public Game(String playerName) {
         checkerboard = new Checkerboard();
@@ -37,35 +37,45 @@ class Game {
     }
 
     /**
-     * TODO.
+     *function start a game 
      */
-    public void start() {
+    public void start()  {
         Scanner sc = new Scanner(System.in);
 
         while (!victory()) {
             checkerboard.print();
 
-            // Get the direction from the user.
+            /** Get the direction from the user.*/
             final char move = sc.nextLine().charAt(0);
-            final Direction direction = charToDirection(move);
+            Direction direction = null;
+           
+			try {
+				direction = charToDirection(move);
+				score=score+1;
 
-            // Calculate the two positions (last and new one).
+			} catch (mouvementFailedException e) {
+				System.err.println("Valid input z,q,s,d");
+				
+				continue;
+			}
+
+            /** Calculate the two positions (last and new one).*/
             final Position previousPlayerPosition = player;
             final Position newPlayerPosition = previousPlayerPosition.translate(direction);
 
-            // No movement
+            /** No movement*/
             if (newPlayerPosition.equals(previousPlayerPosition)) {
                 continue;
             }
 
-            // Simple movement
+            /** Simple movement */
             if (checkerboard.isWalkable(newPlayerPosition)) {
                 checkerboard.moveObject(previousPlayerPosition, newPlayerPosition);
                 player = newPlayerPosition;
                 continue;
             }
 
-            // Move a box
+            /** Move a box */
             if (checkerboard.isMoveable(newPlayerPosition)) {
                 final Position previousBoxPosition = newPlayerPosition;
                 final Position newBoxPosition = previousBoxPosition.translate(direction);
@@ -82,36 +92,47 @@ class Game {
                 }
             }
         }
-        //* If we ended the game by a victory/* 
+        /**
+         *  If we ended the game by a victory
+         */
         if (victory()) {
         	System.out.println("Victory !");
+        	System.out.println("score:");
+        	System.out.println(score);
         }
     }
 
-    /** Get a direction, depend of the move */
-    private Direction charToDirection(char move) {
+    /** Get a direction, depend of the move
+     * @return return a direction */
+    private Direction charToDirection(char move) throws mouvementFailedException {
         Direction direction = NULL;
 
         if (move == 'z') {
             direction = HAUT;
         }
 
-        if (move == 'd') {
+        else if (move == 'd') {
             direction = DROITE;
         }
 
-        if (move == 'q') {
+        else if (move == 'q') {
             direction = GAUCHE;
         }
 
-        if (move == 's') {
+        else if (move == 's') {
             direction = BAS;
+        }
+        else {
+        	throw new mouvementFailedException();
         }
 
         return direction;
     }
 
-    /** Condition of victory, boxes's positions have to be the same has targets's positions */
+    /** 
+     * Condition of victory, boxes's positions have to be the same has targets's positions
+     * @return if the game is end with a true
+     */
     private boolean victory() {
         for (final Position target : targets) {
             boolean empty = true;

@@ -1,10 +1,9 @@
 package fr.iutvalence.sajidepeyronnet.sokoban;
 
 /**
- * TODO.
- *
- * @author TODO
- * @version TODO
+ * @author Sajide Adil
+ * @author Peryonnet Cedric
+ * 
  */
 class Case {
     /** Skin of walls */
@@ -30,13 +29,16 @@ class Case {
     /**
      * TODO.
      *
-     * @param skin TODO
+     * @param skin 
+     * A case with a skin like a wall or something else
      */
     Case(char skin) {
         this.skin = skin;
     }
 
-    @Override
+    /**
+     * get information aobut value of skin
+     */
     public String toString() {
         return String.valueOf(skin);
     }

@@ -2,19 +2,22 @@ package fr.iutvalence.sajidepeyronnet.sokoban;
 
 /** Enumeration of mooves that can have the player */
 enum Direction {
-    /** TODO. */
-    HAUT(0, -1), /** TODO. */
-    BAS(0, +1), /** TODO. */
-    GAUCHE(-1, 0), /** TODO. */
-    DROITE(1, 0), /** TODO. */
+ 
+    HAUT(0, -1), /** we move 1 on x position. */
+    BAS(0, +1), /** we add 1 on x position. */
+    GAUCHE(-1, 0), /** we move 1 on y position */
+    DROITE(1, 0), /** we add 1 on y position */
     NULL(0, 0);
 
-    /** TODO. */
+    /**  */
     int dX;
     /** TODO. */
     int dY;
 
-    /** Constructor of direction with values at x and y of the direction */
+    /** Constructor of direction with values at x and y of the direction 
+     * @param dx the dx
+     * @param dy the dy
+     * */
     Direction(int dX, int dY) {
         this.dX = dX;
         this.dY = dY;
