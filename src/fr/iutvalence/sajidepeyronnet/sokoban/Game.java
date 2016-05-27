@@ -1,31 +1,32 @@
 package fr.iutvalence.sajidepeyronnet.sokoban;
 
-import java.util.Scanner;
-
 import static fr.iutvalence.sajidepeyronnet.sokoban.Direction.BAS;
 import static fr.iutvalence.sajidepeyronnet.sokoban.Direction.DROITE;
 import static fr.iutvalence.sajidepeyronnet.sokoban.Direction.GAUCHE;
 import static fr.iutvalence.sajidepeyronnet.sokoban.Direction.HAUT;
 import static fr.iutvalence.sajidepeyronnet.sokoban.Direction.NULL;
 
+import java.util.List;
+import java.util.Scanner;
+
 /**
  * @author Sajide Adil
  * @author Peyronnet Cedric
  */
 class Game {
-    /** TODO. */
+    /** Checkerboard. */
     private final Checkerboard checkerboard;
-    /** TODO. */
-    private final Position[]   boxes;
-    /** TODO. */
-    private final Position[]   targets;
-    /** TODO. */
+    /** List of boxes. */
+    private final List<Position>   boxes;
+    /** List of targets. */
+    private final List<Position>   targets;
+    /** Player position. */
     private       Position     player;
-    
+    /** Score */
     public int score=0;
 
     /**
-     * TODO.
+     * Gamer's constructor
      *
      * @param playerName the name of the player
      */
@@ -37,7 +38,7 @@ class Game {
     }
 
     /**
-     *function start a game 
+     *Function start a game 
      */
     public void start()  {
         Scanner sc = new Scanner(System.in);
@@ -83,12 +84,12 @@ class Game {
                 if (checkerboard.isWalkable(newBoxPosition)) {
                     checkerboard.moveObject(previousBoxPosition, newBoxPosition);
                     checkerboard.moveObject(previousPlayerPosition, newPlayerPosition);
+                    
+                    
                     player = newPlayerPosition;
-                    for (int i = 0; i < boxes.length; i++) {
-                        if (boxes[i].equals(previousBoxPosition)) {
-                            boxes[i] = newBoxPosition;
-                        }
-                    }
+                    
+                   boxes.remove(previousBoxPosition);
+                   boxes.add(newBoxPosition);
                 }
             }
         }
@@ -135,15 +136,8 @@ class Game {
      */
     private boolean victory() {
         for (final Position target : targets) {
-            boolean empty = true;
-            for (final Position box : boxes) {
-                if (box.equals(target)) {
-                    empty = false;
-                    break;
-                }
-            }
-            if (empty) {
-                return false;
+            if (!boxes.contains(target)) {
+            	return false;
             }
         }
         return true;
